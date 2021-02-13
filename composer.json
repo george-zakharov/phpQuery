@@ -1,0 +1,16 @@
+{
+    "name": "george-zakharov/php-query",
+    "description": "This is phpQuery, a PHP port of jQuery selectors, super useful for DOM traversal and functional testing. Originally by Tobiasz Cudnik, who released it on Google Code. We forked it because we need some bug fixes and no commits have been made upstream for quite some time. Please share your phpQuery fixes with us!",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "George Zakharov",
+            "email": "george_zakharov@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6"
+    }
+}
