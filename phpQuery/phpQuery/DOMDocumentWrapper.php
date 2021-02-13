@@ -194,9 +194,15 @@ class DOMDocumentWrapper {
 			}
 			phpQuery::debug("Full markup load (HTML), documentCreate('$charset')");
 			$this->documentCreate($charset);
+            // TODO: Костыль для работы библиотеки
+            // TODO: Пояснения - https://ourcodeworld.com/articles/read/1375/how-to-solve-php-7-exception-warning-domdocument-loadhtml-tag-figure-nav-section-invalid
+            libxml_use_internal_errors(true);
 			$return = phpQuery::$debug === 2
 				? $this->document->loadHTML($markup)
 				: @$this->document->loadHTML($markup);
+            // TODO: Костыль для работы библиотеки
+            // TODO: Пояснения - https://ourcodeworld.com/articles/read/1375/how-to-solve-php-7-exception-warning-domdocument-loadhtml-tag-figure-nav-section-invalid
+            libxml_use_internal_errors(false);
 			if ($return)
 				$this->root = $this->document;
 		}
@@ -386,7 +392,7 @@ class DOMDocumentWrapper {
 			.($xhtml ? '/' : '')
 			.'>';
 		if (strpos($html, '<head') === false) {
-			if (strpos($hltml, '<html') === false) {
+			if (strpos($html, '<html') === false) {
 				return $meta.$html;
 			} else {
 				return preg_replace(
